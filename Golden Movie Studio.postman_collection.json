@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "17912365-6708-45b2-9ee4-0a983ba1f024",
+		"name": "Golden Movie Studio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45062571"
+	},
+	"item": [
+		{
+			"name": "Buscar user por ID válido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Deve validar as propriedades id, nome, email\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"nome\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"email\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuario/id/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuario",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar user por ID inválido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar message\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"message\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar messagem de retorno\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuario/id/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuario",
+						"id",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de usuário com sucesso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar message\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"message\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar messagem de retorno\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Ana\",\r\n  \"sobrenome\": \"Test\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"telefone\": \"9922333335\",\r\n  \"senha\": \"Password@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de usuario sem sucesso - email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar message\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"message\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar messagem de retorno\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está cadastrado.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Alice\",\r\n  \"sobrenome\": \"Johnson\",\r\n  \"email\": \"alice@teste.com\",\r\n  \"telefone\": \"1122334455\",\r\n  \"senha\": \"Password@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca user por email válido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Deve validar as propriedades id, nome, email\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"nome\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"email\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuario/email/julia@teste.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuario",
+						"email",
+						"julia@teste.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca user por email inválido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar message\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"message\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar messagem de retorno\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuario/email/juliaaaaa@teste.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuario",
+						"email",
+						"juliaaaaa@teste.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca filme por titulo válido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validar messagem de retorno\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Busca realizada com sucesso\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Deve validar as propriedades id, nome, email\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"titulo\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"descricao\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"ano\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"diretor\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/busca/Interestrelar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"busca",
+						"Interestrelar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca filme por titulo inválido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar message\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"message\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar messagem de retorno\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Filme não encontrado.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/busca/FFFilmeInvalidoo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"busca",
+						"FFFilmeInvalidoo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
