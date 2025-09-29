@@ -7,6 +7,10 @@ describe('US-015: Funcionalidade de recomendações de filmes', () => {
         cy.visit('/');
     });
 
+    afterEach(() => {
+        cy.screenshot();
+    });
+
     it('verificar se aparecem 5 recomendacoes', () => {
         cy.get('#recommendations').children().should('have.length', 5)
     })

@@ -7,6 +7,10 @@ describe('US-012: Funcionalidade de cadastro de membros', () => {
         cy.visit('/');
     });
 
+    afterEach(() => {
+        cy.screenshot();
+    });
+
     it('buscar filmes com sucesso', () => {
         cy.get('#search-input').type('Matrix')
         cy.get('#search-button').click()
