@@ -1,110 +1,110 @@
-# Testes de API e Frontend para o Golden Movie Studio (server-gms)
+# API and Frontend Testing for Golden Movie Studio (server-gms)
 
-Este repositório contém uma suíte de testes para o projeto [Golden Movie Studio](https://github.com/EBAC-QE/golden-movie-studio), utilizado para o treinamento de alunos de QA da EBAC.
+This repository contains a test suite for the [Golden Movie Studio](https://github.com/EBAC-QE/golden-movie-studio) project, used to train EBAC QA students.
 
-O projeto inclui:
-* Uma coleção de testes de API do **Postman** para o [servidor backend (server-gms)](https://github.com/EBAC-QE/server-gms).
-* Testes de ponta a ponta (E2E) com **Cypress** para a [aplicação frontend (golden-movie-studio)](https://github.com/EBAC-QE/golden-movie-studio).
+The project includes:
+* A **Postman** API test collection for the [backend server (server-gms)](https://github.com/EBAC-QE/server-gms).
+* End-to-end (E2E) tests with **Cypress** for the [frontend application (golden-movie-studio)](https://github.com/EBAC-QE/golden-movie-studio).
 
-## 📝 Pré-requisitos
+## 📝 Prerequisites
 
-Antes de executar os testes, certifique-se de que você tem o seguinte instalado e configurado:
+Before running the tests, make sure you have the following installed and configured:
 
 * **Node.js**
 * **Git**
-* **Postman** (para os testes de API)
+* **Postman** (for the API tests)
 
 ---
 
-## 🚀 Testes de API (Postman)
+## 🚀 API Tests (Postman)
 
-### 1. Configuração do Servidor Backend (server-gms)
+### 1. Backend Server Setup (server-gms)
 
-Os testes de API precisam que o servidor esteja rodando localmente.
+The API tests require the server to be running locally.
 
-1.  Clone o repositório do servidor:
-    ```bash
-    git clone [https://github.com/EBAC-QE/server-gms.git](https://github.com/EBAC-QE/server-gms.git)
-    ```
-2.  Navegue até a pasta e instale as dependências:
-    ```bash
+1.  Clone the server repository:
+```bash
+    git clone https://github.com/EBAC-QE/server-gms.git
+```
+2.  Navigate to the folder and install dependencies:
+```bash
     cd server-gms
     npm install
-    ```
-3.  Inicie o servidor:
-    ```bash
+```
+3.  Start the server:
+```bash
     npm start
-    ```
-    *O servidor estará rodando em `http://localhost:3000`.*
+```
+    *The server will be running at `http://localhost:3000`.*
 
-### 2. Como Usar a Coleção do Postman
+### 2. How to Use the Postman Collection
 
-1.  Abra o **Postman**.
-2.  Clique em **Import** no canto superior esquerdo.
-3.  Faça o upload do arquivo `Golden Movie Studio.postman_collection.json` deste repositório.
-4.  Após a importação, a coleção "Golden Movie Studio" aparecerá na sua aba de Collections.
-5.  Execute os testes individualmente ou clique em "Run collection" para rodar todos de uma vez.
+1.  Open **Postman**.
+2.  Click **Import** in the top-left corner.
+3.  Upload the `Golden Movie Studio.postman_collection.json` file from this repository.
+4.  Once imported, the "Golden Movie Studio" collection will appear in your Collections tab.
+5.  Run the tests individually, or click "Run collection" to run them all at once.
 
-### ✅ Testes de API Incluídos
+### ✅ API Tests Included
 
-A coleção abrange os principais endpoints da API, testando cenários de sucesso e de falha.
+The collection covers the main API endpoints, testing both success and failure scenarios.
 
-#### Usuários
-* Buscar user por ID válido e inválido.
-* Cadastro de usuário com sucesso.
-* Validação de cadastro com e-mail duplicado.
-* Busca de user por e-mail válido e inválido.
+#### Users
+* Fetch user by valid and invalid ID.
+* Successful user registration.
+* Registration validation with a duplicate email.
+* Fetch user by valid and invalid email.
 
-#### Filmes
-* Busca de filme por título válido e inválido.
+#### Movies
+* Fetch movie by valid and invalid title.
 
 ---
 
-## 🖥️ Testes de Frontend (Cypress)
+## 🖥️ Frontend Tests (Cypress)
 
-### 1. Configuração do Ambiente de Frontend (golden-movie-studio)
+### 1. Frontend Environment Setup (golden-movie-studio)
 
-Para executar os testes de frontend, a aplicação precisa estar rodando localmente.
+To run the frontend tests, the application needs to be running locally.
 
-1.  Clone o repositório do frontend em uma **nova pasta**:
-    ```bash
-    git clone [https://github.com/EBAC-QE/golden-movie-studio.git](https://github.com/EBAC-QE/golden-movie-studio.git)
-    ```
-2.  Navegue até o diretório do projeto e instale as dependências:
-    ```bash
+1.  Clone the frontend repository into a **new folder**:
+```bash
+    git clone https://github.com/EBAC-QE/golden-movie-studio.git
+```
+2.  Navigate to the project directory and install dependencies:
+```bash
     cd golden-movie-studio
     npm install
-    ```
-3.  Inicie a aplicação:
-    ```bash
+```
+3.  Start the application:
+```bash
     npm start
-    ```
-    *A aplicação frontend estará acessível em `http://localhost:3000`.*
+```
+    *The frontend application will be accessible at `http://localhost:3000`.*
 
-### 2. Como Rodar os Testes com Cypress
+### 2. How to Run the Tests with Cypress
 
-Os testes estão localizados na pasta `testesFrontend` deste repositório.
+The tests are located in the `testesFrontend` folder of this repository.
 
-1.  Navegue até a pasta dos testes de frontend:
-    ```bash
+1.  Navigate to the frontend tests folder:
+```bash
     cd testesFrontend
-    ```
-2.  Instale as dependências do Cypress:
-    ```bash
+```
+2.  Install Cypress dependencies:
+```bash
     npm install
-    ```
-3.  Abra o painel do Cypress para executar os testes:
-    ```bash
+```
+3.  Open the Cypress dashboard to run the tests:
+```bash
     npx cypress open
-    ```
-4.  Na janela do Cypress, clique no arquivo de teste que deseja executar.
+```
+4.  In the Cypress window, click the test file you want to run.
 
-### ✅ Testes de Frontend Incluídos
+### ✅ Frontend Tests Included
 
-Os testes automatizados cobrem a funcionalidade de cadastro de membros, garantindo as seguintes validações:
+The automated tests cover the member registration functionality, ensuring the following validations:
 
-* **Cadastro com sucesso:** Verifica se um usuário é cadastrado com sucesso ao preencher todos os campos obrigatórios corretamente.
-* **Validação de email inválido:** Garante que o sistema exibe uma mensagem de erro ao tentar cadastrar um email com formato inválido.
-* **Validação de campos obrigatórios:** Confere se o sistema exibe uma mensagem de erro ao tentar submeter o formulário vazio.
-* **Validação de senha fraca:** Assegura que o sistema bloqueia o uso de senhas que não atendem aos critérios de segurança.
-* **Validação de email duplicado:** Verifica se o sistema impede o cadastro de um email que já existe na base de dados.
+* **Successful registration:** Verifies that a user is successfully registered when all required fields are filled in correctly.
+* **Invalid email validation:** Ensures the system displays an error message when attempting to register with an invalid email format.
+* **Required field validation:** Checks that the system displays an error message when attempting to submit an empty form.
+* **Weak password validation:** Ensures the system blocks the use of passwords that don't meet security criteria.
+* **Duplicate email validation:** Verifies that the system prevents registration of an email that already exists in the database.
